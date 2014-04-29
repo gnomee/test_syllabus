@@ -7,6 +7,7 @@
 // CWebApplication properties can be configured here.
 return array(
     'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
+    'language'=>'ky',
     'name'=>'My Web Application',
 
     // preloading 'log' component
@@ -54,11 +55,29 @@ return array(
         
         
         
+        'db0'=>array(
+            'class'=>'CDbConnection',
+            'connectionString' => 'mysql:host=172.16.0.11;dbname=dep',
+            'emulatePrepare' => true,
+            'username' => 'dep',
+            'password' => 'dep201409',
+            'charset' => 'utf8',
+        ),
         'db'=>array(
+            'class'=>'CDbConnection',
             'connectionString' => 'mysql:host=localhost;dbname=syllabus',
             'emulatePrepare' => true,
             'username' => 'root',
             'password' => '',
+            'charset' => 'utf8',
+            'tablePrefix' => 'dbp_',
+        ),
+        'erehber'=>array(
+            'class'=>'CDbConnection',
+            'connectionString' => 'mysql:host=172.16.0.23;dbname=erehber',
+            'emulatePrepare' => true,
+            'username' => 'erehber',
+            'password' => 'Erehber1417',
             'charset' => 'utf8',
         ),
         

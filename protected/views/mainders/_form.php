@@ -20,20 +20,49 @@
 	<?php echo $form->errorSummary($model); ?>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'fid'); ?>
-		<?php echo $form->textField($model,'fid'); ?>
+		<?php echo $form->labelEx($model,Yii::t('dictionary', 'fid')); ?>
+		<?php //echo $form->textField($model,'fid'); 
+        echo CHtml::dropDownList('fid', '', CHtml::listData(Type::model()->findAll('Type like :type1 or Type like :type2', 
+                      array(':type1'=>'%FAKÜLTESİ',':type2'=>'%YÜKSEKOKULU')),'Id','Type'),
+            array(
+            'empty' => 'Choose...',
+            'ajax' => array(
+            'type'=>'POST', //request type
+            'url'=>CController::createUrl('mainders/dynamiccities'), //url to call.
+            //Style: CController::createUrl('currentController/methodToCall')
+            'update'=>'#city_id', //selector to update
+            //'data'=>'js:javascript statement' 
+            //leave out the data key to pass all form values through
+            )));
+        ?>
 		<?php echo $form->error($model,'fid'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'bid'); ?>
-		<?php echo $form->textField($model,'bid'); ?>
+		<?php //echo $form->textField($model,'bid'); 
+            //echo CHtml::activeDropDownList($model,'bid',array(),array('id'=>'city_id'));
+            echo CHtml::dropDownList('bid', '', array(),
+                array(
+                'id'=>'city_id',
+                //'empty' => 'Choose...',
+                'ajax' => array(
+                'type'=>'POST', //request type
+                'url'=>CController::createUrl('mainders/dynamiccities2'), //url to call.
+                //Style: CController::createUrl('currentController/methodToCall')
+                'update'=>'#city1_id', //selector to update
+                //'data'=>'js:javascript statement' 
+                //leave out the data key to pass all form values through
+                )));
+        ?>
 		<?php echo $form->error($model,'bid'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'koordinatorid'); ?>
-		<?php echo $form->textField($model,'koordinatorid'); ?>
+		<?php //echo $form->textField($model,'koordinatorid'); 
+        echo CHtml::activeDropDownList($model,'koordinatorid',array(),array('id'=>'city1_id'));
+        ?>
 		<?php echo $form->error($model,'koordinatorid'); ?>
 	</div>
 
@@ -57,13 +86,13 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'yariyil'); ?>
-		<?php echo $form->textField($model,'yariyil'); ?>
+		<?php echo CHtml::activeDropDownList($model,'koordinatorid',Mainders::model()->semestr);//echo $form->textField($model,'yariyil'); ?>
 		<?php echo $form->error($model,'yariyil'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'dersturu'); ?>
-		<?php echo $form->textField($model,'dersturu'); ?>
+		<?=CHtml::activeDropDownList($model,'dersturu',Mainders::model()->dersTuru); //echo $form->textField($model,'dersturu'); ?>
 		<?php echo $form->error($model,'dersturu'); ?>
 	</div>
 

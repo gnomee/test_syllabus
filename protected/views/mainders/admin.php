@@ -4,7 +4,7 @@
 
 $this->breadcrumbs=array(
 	'Mainders'=>array('index'),
-	'Manage',
+	Yii::t('dictionary', 'Manage'),
 );
 
 $this->menu=array(

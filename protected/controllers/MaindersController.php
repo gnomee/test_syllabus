@@ -32,7 +32,7 @@ class MaindersController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update'),
+				'actions'=>array('create','update','dynamiccities','dynamiccities2'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -45,6 +45,34 @@ class MaindersController extends Controller
 		);
 	}
 
+    public function actionDynamiccities()
+    {
+        $data=SubType::model()->findAll('Type_Id=:fid and (SubType not like :subtype1 and SubType not like :subtype2 and SubType not like :subtype3)', 
+                      array(':fid'=>(int) $_POST['fid'], ':subtype1'=>'Fakülte', ':subtype2'=>'Enstitü', ':subtype3'=>'Yüksekokul'));
+     
+        $data=CHtml::listData($data,'Id','SubType');
+        echo CHtml::tag('option',
+                       array('value'=>''),CHtml::encode('Choose'),true);
+        foreach($data as $value=>$name)
+        {
+            echo CHtml::tag('option',
+                       array('value'=>$value),CHtml::encode($name),true);
+        }
+     }
+    public function actionDynamiccities2()
+    {
+        $data=Personel::model()->findAll('SubType_Id=:bid and Kimlik not like :kimlik order by Ireet', 
+                      array(':bid'=>(int) $_POST['bid'],':kimlik'=>'-%'));
+
+        $data=CHtml::listData($data,'Id','fullName');
+        echo CHtml::tag('option',
+                       array('value'=>''),CHtml::encode('Choose'),true);
+        foreach($data as $value=>$name)
+        {
+            echo CHtml::tag('option',
+                       array('value'=>$value),CHtml::encode($name),true);
+        }
+     }
 	/**
 	 * Displays a particular model.
 	 * @param integer $id the ID of the model to be displayed

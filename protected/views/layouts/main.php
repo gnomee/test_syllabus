@@ -30,8 +30,17 @@
 		<?php $this->widget('zii.widgets.CMenu',array(
 			'items'=>array(
 				array('label'=>'Home', 'url'=>array('/site/index')),
-				array('label'=>'About', 'url'=>array('/site/page', 'view'=>'about')),
-				array('label'=>'Contact', 'url'=>array('/site/contact')),
+                array('label'=>'Mainders', 'url'=>array('/mainders')),
+                array('label'=>'Type', 'url'=>array('/type')),
+                array('label'=>'Subtype', 'url'=>array('/subType')),
+                array('label'=>'Personel', 'url'=>array('/personel')),
+                array('label'=>'Dersgenelbilgi', 'url'=>array('/dersgenelbilgi')),
+                array('label'=>'kaynak', 'url'=>array('/kaynak')),
+                array('label'=>'olcme', 'url'=>array('/olcmedegerlendirme')),
+                array('label'=>'ogrcikti', 'url'=>array('/dersogrcikti')),
+                array('label'=>'hafdersicerigi','url' =>array('/haftalikdersicerigi')),
+                array('label'=>'is yuku', 'url'=>array('/isyuku')),
+				array('label'=>'Degeraraci', 'url'=>array('/degaraci    ')),
 				array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
 				array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
 			),
